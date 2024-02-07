@@ -42,7 +42,7 @@ export class Deck implements Stack {
     if(this.isFull()) return null;
     this.data.push(card);
   }
-  
+
   pop() {
     return this.data.pop();
   }
@@ -53,10 +53,7 @@ export class Deck implements Stack {
 
   peek() {
     let card = this.data[this.data.length -1]
-    return {
-        rank: card.getValue(),
-        suit: card.getSuit()
-    };
+    return card;
   }
   isEmpty(): boolean {
     return this.data.length == 0 ? true : false;
