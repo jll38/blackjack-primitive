@@ -1,14 +1,12 @@
 import { Hand } from "./Hand";
 import { Deck } from "./Deck";
-import { PlayingCard } from "./PlayingCard";
 
 interface BlackjackHandProps {
   hit(deck: Deck): void;
-  stand(deck: Deck): void;
   getTotalHand(): number[];
 }
 
-export class BlackjackHand extends Hand {
+export class BlackjackHand extends Hand implements BlackjackHandProps {
   getTotalHand(): number[] {
     let arr = [0];
     console.log(this.cards);
@@ -35,14 +33,8 @@ export class BlackjackHand extends Hand {
     }
     return arr;
   }
-}
 
-interface DealerHandProps {
-  dealCard(deck: Deck, target: DealerHand | PlayerHand): void;
+  hit(deck: Deck): void {
+      this.push(deck.pop())
+  }
 }
-
-export class DealerHand extends Hand implements DealerHandProps {
-  dealCard(deck: Deck, target: DealerHand | PlayerHand): void {}
-}
-
-export class PlayerHand extends Hand {}
