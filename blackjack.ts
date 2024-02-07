@@ -20,7 +20,7 @@ export class BlackjackHand extends Hand implements BlackjackHandProps {
     const hand = this.getTotalHand();
     return `${hand[0]}${hand[1] && hand[1] <= 21 ? ` or ${hand[1]}` : ``}`;
   }
-  
+
   hit(deck: Deck): void {
     const card = deck.pop();
     if (card === undefined) throw new Error("No cards in the deck to draw.");
@@ -51,12 +51,9 @@ export class DealerHand extends BlackjackHand {
   hidingCard = true;
 
   getHand(): PlayingCard[] {
-    if (this.hidingCard) {
-      return this.cards.slice(1);
-    }
-    return this.cards;
+    return this.hidingCard ? this.cards.slice(1) : this.cards;
   }
-  
+
   showHand(): void {
     this.hidingCard = false;
   }

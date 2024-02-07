@@ -7,6 +7,8 @@ console.log("\nWelcome to Blackjack 🃏");
 prompt("Press any key to begin...");
 
 const deck = new Deck();
+deck.shuffle();
+
 const dealer = new DealerHand();
 const player = new BlackjackHand();
 
@@ -22,5 +24,6 @@ console.log("\nPlayer's Hand");
 console.log(player.getHand())
 
 console.log("Player Hit")
+player.hit(deck);
 console.log(player.getHand());
 console.log(player.getTotalHand())

@@ -75,4 +75,11 @@ export class Deck implements Stack {
   clear(): void {
     this.data = [];
   }
+
+  shuffle(): void {
+    for (let i = this.data.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this.data[i], this.data[j]] = [this.data[j], this.data[i]];
+    }
+  }
 }
