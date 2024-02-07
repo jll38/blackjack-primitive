@@ -7,7 +7,7 @@ interface HandProps {
 }
 
 export class Hand implements HandProps {
-  private cards: Array<PlayingCard> = [];
+cards: Array<PlayingCard> = [];
 
   push(card: PlayingCard): void {
     this.cards.push(card);

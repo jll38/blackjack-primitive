@@ -43,7 +43,7 @@ export class Deck implements Stack {
     this.data.push(card);
   }
 
-  pop() {
+  pop(): any {
     return this.data.pop();
   }
 
