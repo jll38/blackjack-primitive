@@ -1,10 +1,21 @@
 import { Deck } from "../Deck";
+import { PlayingCard } from "../PlayingCard";
 
 const deck = new Deck();
+const customDeck = new Deck([
+  new PlayingCard("2", "Diamond"),
+  new PlayingCard("5", "Heart"),
+  new PlayingCard("King", "Diamond"),
+]);
 
 //Test Size and Initialization
 test("should contain 52 cards", () => {
   expect(deck.size()).toBe(52);
+});
+
+//Test Size and Initialization
+test("Custom Deck should contain 3 cards", () => {
+  expect(customDeck.size()).toBe(3);
 });
 
 test("full deck check (True Condition)", () => {

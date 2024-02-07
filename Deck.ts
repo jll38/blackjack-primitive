@@ -28,18 +28,27 @@ export class Deck implements Stack {
     "King",
   ];
 
-  constructor() {
-    Deck.suits.forEach((suit) => {
-      Deck.ranks.forEach((rank) => {
-        // Assuming PlayingCard accepts rank and suit in its constructor
-        const card = new PlayingCard(rank, suit);
-        this.data.push(card);
+  constructor(props?: Partial<PlayingCard[]>) {
+    if (props && Object.keys(props).length > 0) {
+      //If given a custom array/deck of cards
+      props.forEach((card) => {
+        if (card !== undefined) {
+          this.data.push(card);
+        }
       });
-    });
+    } else {
+      //Default
+      Deck.suits.forEach((suit) => {
+        Deck.ranks.forEach((rank) => {
+          const card = new PlayingCard(rank, suit);
+          this.data.push(card);
+        });
+      });
+    }
   }
 
-  push(card : PlayingCard) {
-    if(this.isFull()) return null;
+  push(card: PlayingCard) {
+    if (this.isFull()) return null;
     this.data.push(card);
   }
 
@@ -52,7 +61,7 @@ export class Deck implements Stack {
   }
 
   peek() {
-    let card = this.data[this.data.length -1]
+    let card = this.data[this.data.length - 1];
     return card;
   }
   isEmpty(): boolean {
