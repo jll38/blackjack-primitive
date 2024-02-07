@@ -43,8 +43,7 @@ export class Deck implements Stack {
     this.data.push(card);
   }
   pop() {
-    this.data.pop();
-    return null;
+    return this.data.pop();
   }
   isFull() {
     return this.data.length === 52 ? true : false;
