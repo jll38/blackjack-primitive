@@ -7,6 +7,7 @@ interface Stack {
   isEmpty(): boolean;
   isFull(): boolean;
   size(): number;
+  clear(): void;
 }
 
 export class Deck implements Stack {
@@ -69,5 +70,9 @@ export class Deck implements Stack {
   }
   size(): number {
     return this.data.length;
+  }
+
+  clear(): void {
+    this.data = [];
   }
 }
