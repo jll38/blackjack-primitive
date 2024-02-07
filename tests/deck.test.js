@@ -19,8 +19,6 @@ test("should be able to peek a card", () => {
 test("should draw top card from the deck", () => {
   const topCard = deck.peek();
   const popped = deck.pop();
-  console.log(topCard);
-  console.log(popped);
   expect(typeof popped).toBe("object");
   expect(topCard).toEqual(popped);
   expect(deck.size()).toBe(51);

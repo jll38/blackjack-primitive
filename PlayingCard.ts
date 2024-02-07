@@ -1,14 +1,14 @@
 export class PlayingCard {
-  private value: string;
+  private rank: string;
   private suit: string;
 
-  constructor(value: string, suit: string) {
-    this.value = value;
+  constructor(rank: string, suit: string) {
+    this.rank = rank;
     this.suit = suit;
   }
 
-  getValue() {
-    return this.value;
+  getRank() {
+    return this.rank;
   }
 
   getSuit() {
