@@ -3,13 +3,13 @@ import { PlayingCard } from "./PlayingCard";
 interface Stack {
   push(playingCard: PlayingCard): void | null;
   pop(): PlayingCard | null | undefined;
-  peek(): String | null;
+  peek(): Object | null;
   isEmpty(): boolean;
   isFull(): boolean;
   size(): number;
 }
 
-class Deck implements Stack {
+export class Deck implements Stack {
   private data: Array<PlayingCard> = [];
   private static readonly suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
   private static readonly ranks = [
@@ -43,13 +43,18 @@ class Deck implements Stack {
     this.data.push(card);
   }
   pop() {
+    this.data.pop();
     return null;
   }
   isFull() {
     return this.data.length === 52 ? true : false;
   }
   peek() {
-    return `The next card is a ${this.data[this.data.length - 1].getValue()}`;
+    let card = this.data[this.data.length -1]
+    return {
+        rank: card.getValue(),
+        suit: card.getSuit()
+    };
   }
   isEmpty(): boolean {
     return this.data.length == 0 ? true : false;
