@@ -22,9 +22,34 @@ test("deck should be full", () => {
   expect(deck.isFull()).toBe(true);
 });
 
+test("should return proper empty boolean", () => {
+  const deck = new Deck();
+  expect(deck.isEmpty()).toBe(false);
+  deck.clear()
+  expect(deck.isEmpty()).toBe(true);
+  deck.push(new PlayingCard("6", "Clubs"))
+  expect(deck.isEmpty()).toBe(false);
+})
+
 test("should be able to peek a card", () => {
   const deck = new Deck();
   expect(typeof deck.peek()).toBe("object");
+});
+
+test("should throw empty deck error", () => {
+  const deck = new Deck();
+  deck.clear();
+  expect(() => {
+    deck.peek();
+  }).toThrow("No cards available.");
+});
+
+test("should throw empty deck error", () => {
+  const deck = new Deck();
+  deck.clear();
+  expect(() => {
+    deck.shuffle();
+  }).toThrow("Too little cards to shuffle.");
 });
 
 test("should be able to push a card to the deck", () => {
@@ -49,4 +74,3 @@ test("deck should NOT be full", () => {
   deck.clear();
   expect(deck.isFull()).toBe(false);
 });
-

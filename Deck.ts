@@ -62,6 +62,7 @@ export class Deck implements Stack {
   }
 
   peek() {
+    if(this.data.length === 0) throw new Error("No cards available.")
     let card = this.data[this.data.length - 1];
     return card;
   }
@@ -77,6 +78,7 @@ export class Deck implements Stack {
   }
 
   shuffle(): void {
+    if(this.data.length < 2) throw new Error("Too little cards to shuffle.")
     for (let i = this.data.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [this.data[i], this.data[j]] = [this.data[j], this.data[i]];
