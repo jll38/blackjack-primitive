@@ -127,7 +127,7 @@ export class Blackjack extends Game {
             `${player.getHand()[player.getHand().length - 1].getRank()}`
           )}`
         );
-        console.log(this.checkValue(player, dealer));
+        this.checkValue(player, dealer);
       }
     }
 
