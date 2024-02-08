@@ -135,7 +135,8 @@ export class Blackjack extends Game {
   }
 
   protected hitOrStand() {
-    let response = prompt("\nHit or Stand? (h/s): ");
+    console.log("")
+    let response = prompt("Hit or Stand? (h/s): ");
     console.log("")
     switch (response) {
       default:
