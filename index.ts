@@ -7,7 +7,6 @@ const prompt = require('prompt-sync')();
 
 const BlackjackGame = new Blackjack();
 class initScreen {
-
   
   start(){
     console.clear();
