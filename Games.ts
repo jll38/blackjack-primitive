@@ -134,7 +134,6 @@ export class Blackjack extends Game {
     this.turn++;
   }
 
-  dealerHitOrSand() {}
   protected hitOrStand() {
     let response = prompt("\nHit or Stand? (h/s): ");
     console.log("")
