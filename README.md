@@ -17,7 +17,7 @@ The Blackjack project is a console-based simulation of the Blackjack card game, 
    ```bash
    npm install
    ```
-   
+
 ### Running the Game
 To start the game, run:
 ```
@@ -43,10 +43,5 @@ Tests are implemented using Jest. To run the tests, execute:
 ```bash
 npm test
 ```
-or if you're using Yarn:
-```bash
-yarn test
-```
-
 ## License
 The Blackjack project is open-sourced under the MIT license.
