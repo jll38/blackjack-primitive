@@ -9,7 +9,8 @@ interface BlackjackHandProps {
 }
 
 export class BlackjackHand extends Hand implements BlackjackHandProps {
-  totalHand = [0, 0];
+  name: string = "Player";
+  totalHand: number[] = [0, 0];
   numericalHand: number[][] = [[], []];
 
   getTotalHand(): number[] {
@@ -18,7 +19,9 @@ export class BlackjackHand extends Hand implements BlackjackHandProps {
 
   getTotalHandString(): string {
     const hand = this.getTotalHand();
-    return `${hand[0]}${hand[1] && hand[1] <= 21 ? ` or ${hand[1]}` : ``}`;
+    return `${hand[0]}${
+      hand[1] && hand[1] <= 21 && hand[0] !== hand[1] ? ` or ${hand[1]}` : ``
+    }`;
   }
 
   hit(deck: Deck): void {
@@ -48,7 +51,8 @@ export class BlackjackHand extends Hand implements BlackjackHandProps {
 }
 
 export class DealerHand extends BlackjackHand {
-  hidingCard = true;
+  name: string = "Dealer";
+  hidingCard: boolean = true;
 
   getHand(): PlayingCard[] {
     return this.hidingCard ? this.cards.slice(1) : this.cards;

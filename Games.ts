@@ -1,3 +1,5 @@
+import chalk from "./node_modules/chalk/source/index";
+
 import { Hand } from "./Hand";
 import { Deck } from "./Deck";
 import { PlayingCard } from "./PlayingCard";
@@ -14,38 +16,69 @@ class Game {
   start(): void {
     console.clear();
     console.log("------------------------------");
-    console.log("🃏 Welcome to Lechner Casino 🃏");
+    console.log(`🃏 Welcome to ${chalk.green('Lechner Casino')} 🃏`);
     console.log("------------------------------");
-    console.log(`Your are playing: ${this.game}`);
+    console.log(`Your are playing: ${chalk.yellow(this.game)}`);
 
-    const { cards, dealer, player } = this.initObjects();
-    this.initiateTurn(cards, dealer, player);
+    const { deck, dealer, player } = this.initObjects();
+    this.initiateTurn(deck, dealer, player);
   }
-  initiateTurn(cards: Deck, dealer: DealerHand, player: BlackjackHand): void {}
+  initiateTurn(deck: Deck, dealer: DealerHand, player: BlackjackHand): void {}
 
   protected initObjects(): any {
     return null;
+  }
+
+  endGame(winner: BlackjackHand): void {
+    console.log(`Winner: ${winner.name}`);
+    winner.name === "Dealer" ? this.dealerWin++ : this.playerWin++;
+    console.log("Play again?");
+    //Prompt user
+    console.log("Thanks for playing!");
+    process.exit();
   }
 }
 
 export class Blackjack extends Game {
   game = "Blackjack";
 
-  initiateTurn(cards: Deck, dealer: DealerHand, player: BlackjackHand): void {
+  initiateTurn(deck: Deck, dealer: DealerHand, player: BlackjackHand): void {
     if (this.turn === 0) {
-        dealer.hit(cards);
-        dealer.hit(cards);
-        console.log(`Dealer showing ${dealer.getTotalHandString}`)
+      dealer.hit(deck);
+      dealer.hit(deck);
+
+      this.checkValue(dealer, player)
+
+      player.hit(deck);
+      player.hit(deck);
+
+      this.checkValue(player, dealer)
+
+      console.log("Hit or Stand? (H/S)");
     }
 
     this.turn++;
   }
 
+  protected checkValue(player: BlackjackHand, opponent: BlackjackHand): void {
+    if (player.getTotalHand()[0] === 21 || player.getTotalHand()[1] === 21) {
+      console.log(`${player.name} got Blackjack!`);
+      this.endGame(player);
+    } else console.log(`${player.name} showing ${chalk.yellow(player.getTotalHandString())}`);
+    if(player.getTotalHand()[0] > 21){
+        console.log(`${player.name} Bust!`);
+        this.endGame(opponent);
+
+    }
+  }
+
   protected initObjects(): any {
     const deck = new Deck();
     deck.shuffle();
+    console.log(chalk.gray("Shuffling deck..."));
     const dealer = new DealerHand();
     const player = new BlackjackHand();
+
     return { deck, dealer, player };
   }
 }
