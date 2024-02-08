@@ -1,6 +1,6 @@
 
 # Blackjack-Typescript
-![image](./images/example.gif)
+![image](./images/blackjack.gif)
 
 ## Overview
 The Blackjack project is a console-based simulation of the Blackjack card game, also known as 21. Developed in Node.js, it showcases Object-Oriented Programming (OOP) principles and adheres to the SOLID design principles. The game features a dealer (computer) and a player (user), with the ability to hit or stand as per the classic game rules.
