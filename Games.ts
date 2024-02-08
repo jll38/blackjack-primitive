@@ -136,7 +136,8 @@ export class Blackjack extends Game {
 
   dealerHitOrSand() {}
   protected hitOrStand() {
-    let response = prompt("Hit or Stand? (h/s): ");
+    let response = prompt("\nHit or Stand? (h/s): ");
+    console.log("")
     switch (response) {
       default:
         console.log(chalk.red("Invalid response. Try again!"));
