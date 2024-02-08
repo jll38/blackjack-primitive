@@ -8,7 +8,7 @@ import { BlackjackHand } from "./blackjack";
 
 const prompt = require("prompt-sync")();
 
-class Game {
+abstract class Game {
   game: string | null = null;
   playerWin = 0;
   dealerWin = 0;
