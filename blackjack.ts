@@ -28,7 +28,7 @@ export class BlackjackHand extends Hand implements BlackjackHandProps {
     const card = deck.pop();
     if (card === undefined) throw new Error("No cards in the deck to draw.");
     this.push(card);
-    switch (card.getRank()) {
+    switch (card.rank) {
       case "Ace":
         this.totalHand[1] += 11;
         if (this.totalHand[1] > 21 && this.totalHand[0] + 11 <= 21) {
@@ -43,7 +43,7 @@ export class BlackjackHand extends Hand implements BlackjackHandProps {
         this.totalHand = this.totalHand.map((value) => value + 10);
         break;
       default:
-        const convertedInt = Number.parseInt(card.getRank());
+        const convertedInt = Number.parseInt(card.rank);
         this.totalHand = this.totalHand.map((value) => value + convertedInt);
         break;
     }

@@ -20,7 +20,7 @@ cards: Array<PlayingCard> = [];
   getHandToString(): string {
     let output : string= "";
     this.cards.map((card) => {
-      output += `${card.getRank()}-${card.getSuit()} `;
+      output += `${card.rank}-${card.suit} `;
     });
     return output;
   }

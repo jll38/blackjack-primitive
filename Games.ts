@@ -104,7 +104,7 @@ export class Blackjack extends Game {
           console.log(
             `Dealer hit ${dealer
               .getHand()
-              [dealer.getHand().length - 1].getRank()}`
+              [dealer.getHand().length - 1].rank}`
           );
           maxDealerHand =
             dealer.getTotalHand()[1] <= 21
@@ -124,7 +124,7 @@ export class Blackjack extends Game {
         player.hit(deck);
         console.log(
           `${player.name} recieves ${chalk.yellow(
-            `${player.getHand()[player.getHand().length - 1].getRank()}`
+            `${player.getHand()[player.getHand().length - 1].rank}`
           )}`
         );
         this.checkValue(player, dealer);
