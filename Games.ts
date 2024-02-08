@@ -14,22 +14,39 @@ class Game {
   turn = 0;
 
   start(): void {
+    /*
+    start()
+    Starts the selected game, based off of the class which extends this class.
+    */
     console.clear();
     console.log("------------------------------");
-    console.log(`🃏 Welcome to ${chalk.green('Lechner Casino')} 🃏`);
+    console.log(`🃏 Welcome to ${chalk.green("Lechner Casino")} 🃏`);
     console.log("------------------------------");
     console.log(`Your are playing: ${chalk.yellow(this.game)}`);
 
     const { deck, dealer, player } = this.initObjects();
     this.initiateTurn(deck, dealer, player);
   }
-  initiateTurn(deck: Deck, dealer: DealerHand, player: BlackjackHand): void {}
+
+  initiateTurn(deck: Deck, dealer: DealerHand, player: BlackjackHand): void {
+    /*
+    Handles each turn and increments the turn count. Overridden by the class that extends
+    */
+  }
 
   protected initObjects(): any {
+    /*
+    initObjects()
+    Initializes the game objects needed for each game, overridden by the class that extends this.
+     */
     return null;
   }
 
   endGame(winner: BlackjackHand): void {
+    /*
+    endGame()
+    Ends the game, displays the winner and increments the win count for them.
+     */
     console.log(`Winner: ${winner.name}`);
     winner.name === "Dealer" ? this.dealerWin++ : this.playerWin++;
     console.log("Play again?");
@@ -47,12 +64,12 @@ export class Blackjack extends Game {
       dealer.hit(deck);
       dealer.hit(deck);
 
-      this.checkValue(dealer, player)
+      this.checkValue(dealer, player);
 
       player.hit(deck);
       player.hit(deck);
 
-      this.checkValue(player, dealer)
+      this.checkValue(player, dealer);
 
       console.log("Hit or Stand? (H/S)");
     }
@@ -61,14 +78,22 @@ export class Blackjack extends Game {
   }
 
   protected checkValue(player: BlackjackHand, opponent: BlackjackHand): void {
+    /*
+    checkValue()
+    Takes in the player who just hit from the deck and their opponent as parameters.
+    Checks to see if the player hit a Blackjack or busted.
+    */
     if (player.getTotalHand()[0] === 21 || player.getTotalHand()[1] === 21) {
       console.log(`${player.name} got Blackjack!`);
       this.endGame(player);
-    } else console.log(`${player.name} showing ${chalk.yellow(player.getTotalHandString())}`);
-    if(player.getTotalHand()[0] > 21){
-        console.log(`${player.name} Bust!`);
-        this.endGame(opponent);
+    } else
+      console.log(
+        `${player.name} showing ${chalk.yellow(player.getTotalHandString())}`
+      );
 
+    if (player.getTotalHand()[0] > 21) {
+      console.log(`${player.name} Bust!`);
+      this.endGame(opponent);
     }
   }
 
