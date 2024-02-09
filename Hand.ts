@@ -1,15 +1,15 @@
 import { PlayingCard } from "./PlayingCard";
 
 interface HandProps {
-  push(card: PlayingCard): void;
+  addCard(card: PlayingCard): void;
   getHand(): Array<PlayingCard>;
   toString(): string;
 }
 
-export class Hand implements HandProps {
+export abstract class Hand implements HandProps {
 cards: Array<PlayingCard> = [];
 
-  push(card: PlayingCard): void {
+  addCard(card: PlayingCard): void {
     this.cards.push(card);
   }
 

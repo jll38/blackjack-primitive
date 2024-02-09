@@ -12,12 +12,12 @@ test("should be empty", () => {
 const card = new PlayingCard("Ace", "Spades");
 const card2 = new PlayingCard("King", "Spades");
 test("should be able to add a card to the hand", () => {
-  hand.push(card);
+  hand.addCard(card);
   expect(hand.getHand().length).toBe(1);
 });
 
 test("should return hand", () => {
-  hand.push(card2);
+  hand.addCard(card2);
   expect(hand.getHand()).toEqual([card, card2]);
 });
 
