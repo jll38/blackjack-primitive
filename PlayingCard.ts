@@ -7,4 +7,7 @@ export class PlayingCard {
     this.suit = suit;
   }
 
+  static create(rank: string, suit: string){
+    return new PlayingCard(rank, suit);
+  }
 }
