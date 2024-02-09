@@ -1,8 +1,8 @@
 import { PlayingCard } from "./PlayingCard";
 
 interface Stack {
-  push(playingCard: PlayingCard): void | null;
-  pop(): PlayingCard | null | undefined;
+  addCard(playingCard: PlayingCard): void | null;
+  draw(): PlayingCard | null | undefined;
   peek(): Object | null;
   isEmpty(): boolean;
   isFull(): boolean;
@@ -53,13 +53,13 @@ export class Deck implements Stack {
   static create(): Deck {
     return new Deck();
   }
-  
-  push(card: PlayingCard) {
+
+  addCard(card: PlayingCard) {
     if (this.isFull()) return null;
     this.data.push(card);
   }
 
-  pop(): any {
+  draw(): any {
     return this.data.pop();
   }
 

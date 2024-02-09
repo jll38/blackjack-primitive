@@ -25,7 +25,7 @@ test("should return proper empty boolean", () => {
   expect(deck.isEmpty()).toBe(false);
   deck.clear()
   expect(deck.isEmpty()).toBe(true);
-  deck.push(new PlayingCard("6", "Clubs"))
+  deck.addCard(new PlayingCard("6", "Clubs"))
   expect(deck.isEmpty()).toBe(false);
 })
 
@@ -53,14 +53,14 @@ test("should be able to push a card to the deck", () => {
   const deck = Deck.create();
   const card = new PlayingCard("5", "Hearts");
   deck.clear();
-  deck.push(card);
+  deck.addCard(card);
   expect(deck.peek()).toEqual(card);
 });
 
 test("should draw top card from the deck", () => {
   const deck = Deck.create();
   const topCard = deck.peek();
-  const popped = deck.pop();
+  const popped = deck.draw();
   expect(typeof popped).toBe("object");
   expect(topCard).toEqual(popped);
   expect(deck.size()).toBe(51);

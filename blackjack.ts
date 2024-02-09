@@ -25,7 +25,7 @@ export class BlackjackHand extends Hand implements BlackjackHandProps {
   }
 
   hit(deck: Deck): void {
-    const card = deck.pop();
+    const card = deck.draw();
     if (card === undefined) throw new Error("No cards in the deck to draw.");
     this.addCard(card);
     switch (card.rank) {

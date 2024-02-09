@@ -39,9 +39,9 @@ test("should throw an error if the deck is empty when attempting to hit", () => 
 test("should return the correct total hand in array", () => {
   const deck = new Deck();
   deck.clear();
-  deck.push(new PlayingCard("Ace", "Spades"))
-  deck.push(new PlayingCard("3", "Spades"))
-  deck.push(new PlayingCard("1", "Spades"))
+  deck.addCard(new PlayingCard("Ace", "Spades"))
+  deck.addCard(new PlayingCard("3", "Spades"))
+  deck.addCard(new PlayingCard("1", "Spades"))
   const player = new BlackjackHand();
   player.hit(deck);
   expect(player.getTotalHand()).toEqual([1,1])
@@ -54,7 +54,7 @@ test("should return the correct total hand in array", () => {
 test("hitting an Ace should result in two decks incremented by 1 and 11 each", () => {
   const deck = new Deck();
   deck.clear();
-  deck.push(new PlayingCard("Ace", "Spades"))
+  deck.addCard(new PlayingCard("Ace", "Spades"))
   const player = new BlackjackHand()
   player.hit(deck)
   expect(player.getTotalHand()).toEqual([1,11])
@@ -63,9 +63,9 @@ test("hitting an Ace should result in two decks incremented by 1 and 11 each", (
 test("hitting a King, Jack, or Queen should result in both decks incremented by 10", () => {
   const deck = new Deck();
   deck.clear();
-  deck.push(new PlayingCard("King", "Spades"))
-  deck.push(new PlayingCard("Jack", "Hearts"))
-  deck.push(new PlayingCard("Queen", "Diamonds"))
+  deck.addCard(new PlayingCard("King", "Spades"))
+  deck.addCard(new PlayingCard("Jack", "Hearts"))
+  deck.addCard(new PlayingCard("Queen", "Diamonds"))
   const player = new BlackjackHand()
   const player2 = new BlackjackHand()
   const player3 = new BlackjackHand()
