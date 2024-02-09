@@ -61,7 +61,8 @@ test("hitting an Ace should result in two decks incremented by 1 and 11 each", (
 })
 
 test("hitting a King, Jack, or Queen should result in both decks incremented by 10", () => {
-  const deck = Deck.create().clear();
+  const deck = Deck.create()
+  deck.clear();
   deck.addCard(new PlayingCard("King", "Spades"))
   deck.addCard(new PlayingCard("Jack", "Hearts"))
   deck.addCard(new PlayingCard("Queen", "Diamonds"))
