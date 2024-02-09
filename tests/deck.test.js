@@ -1,6 +1,11 @@
 import { Deck } from "../Deck";
 import { PlayingCard } from "../PlayingCard";
 
+//Test Factory Method
+test("should return a Deck object", () => {
+  expect(Deck.create()).toBeInstanceOf(Deck);
+});
+
 //Test Size and Initialization
 test("should contain 52 cards", () => {
   expect(Deck.create().size()).toBe(52);
