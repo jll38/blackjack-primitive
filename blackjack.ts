@@ -13,6 +13,11 @@ export class BlackjackHand extends Hand implements BlackjackHandProps {
   totalHand: number[] = [0, 0];
   numericalHand: number[][] = [[], []];
 
+  //Factory Method
+  static create(): BlackjackHand {
+    return new BlackjackHand();
+  }
+
   getTotalHand(): number[] {
     return this.totalHand;
   }
@@ -53,6 +58,11 @@ export class BlackjackHand extends Hand implements BlackjackHandProps {
 export class DealerHand extends BlackjackHand {
   name: string = "Dealer";
   hidingCard: boolean = true;
+
+  //Factory Method
+  static create(): DealerHand {
+    return new DealerHand();
+  }
 
   getHand(): PlayingCard[] {
     return this.hidingCard ? this.cards.slice(1) : this.cards;
