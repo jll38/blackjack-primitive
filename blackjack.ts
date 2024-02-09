@@ -59,11 +59,6 @@ export class DealerHand extends BlackjackHand {
   name: string = "Dealer";
   hidingCard: boolean = true;
 
-  //Factory Method
-  static create(): DealerHand {
-    return new DealerHand();
-  }
-
   getHand(): PlayingCard[] {
     return this.hidingCard ? this.cards.slice(1) : this.cards;
   }

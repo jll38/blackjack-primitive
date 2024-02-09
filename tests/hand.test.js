@@ -28,9 +28,10 @@ test("should return a string representation of the hand", () => {
 
 //Blackjack Hand Tests
 test("should throw an error if the deck is empty when attempting to hit", () => {
-  const deck = new Deck();
+  const deck = Deck.create();
   deck.clear();
-  const player = new BlackjackHand()
+
+  const player = BlackjackHand.create();
   expect(() => {
     player.hit(deck)
   }).toThrow("No cards in the deck to draw.")
@@ -52,10 +53,10 @@ test("should return the correct total hand in array", () => {
 })
 
 test("hitting an Ace should result in two decks incremented by 1 and 11 each", () => {
-  const deck = new Deck();
+  const deck = Deck.create();
   deck.clear();
   deck.addCard(new PlayingCard("Ace", "Spades"))
-  const player = new BlackjackHand()
+  const player = BlackjackHand.create()
   player.hit(deck)
   expect(player.getTotalHand()).toEqual([1,11])
 })
@@ -66,9 +67,9 @@ test("hitting a King, Jack, or Queen should result in both decks incremented by 
   deck.addCard(new PlayingCard("King", "Spades"))
   deck.addCard(new PlayingCard("Jack", "Hearts"))
   deck.addCard(new PlayingCard("Queen", "Diamonds"))
-  const player = new BlackjackHand()
-  const player2 = new BlackjackHand()
-  const player3 = new BlackjackHand()
+  const player = BlackjackHand.create()
+  const player2 = BlackjackHand.create()
+  const player3 = BlackjackHand.create()
   player.hit(deck)
   player2.hit(deck)
   player3.hit(deck)
