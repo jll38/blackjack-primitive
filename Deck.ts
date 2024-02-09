@@ -32,7 +32,7 @@ export class Deck implements Stack {
   constructor(props?: Partial<PlayingCard[]>) {
     this.initializeDeck(props);
   }
-  
+
   private initializeDeck(props?: Partial<PlayingCard[]>): void {
     if (props && Object.keys(props).length > 0) {
       //If given a custom array/deck of cards
@@ -75,9 +75,11 @@ export class Deck implements Stack {
     let card = this.data[this.data.length - 1];
     return card;
   }
+
   isEmpty(): boolean {
     return this.data.length == 0 ? true : false;
   }
+  
   size(): number {
     return this.data.length;
   }
