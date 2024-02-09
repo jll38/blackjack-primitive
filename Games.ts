@@ -156,7 +156,7 @@ export class Blackjack extends Game {
     Checks to see if the player hit a Blackjack or busted.
     */
     if (player.getTotalHand()[0] === 21 || player.getTotalHand()[1] === 21) {
-      console.log(`${player.name} got ${chalk.green("Blackjack!")}`);
+      console.log(`${player.name} got ${chalk.green(this.turn === 0 ? "Blackjack!" : "21")}`);
       this.endGame(player);
     } else
       console.log(
@@ -174,7 +174,7 @@ export class Blackjack extends Game {
     deck.shuffle();
     console.log(chalk.gray("Shuffling deck..."));
     const dealer = new DealerHand();
-    const player = new BlackjackHand();
+    const player = BlackjackHand.create();
 
     return { deck, dealer, player };
   }
