@@ -3,8 +3,7 @@ import { PlayingCard } from "../PlayingCard";
 
 //Test Size and Initialization
 test("should contain 52 cards", () => {
-  const deck = new Deck();
-  expect(deck.size()).toBe(52);
+  expect(Deck.create().size()).toBe(52);
 });
 
 //Test Size and Initialization
@@ -18,12 +17,11 @@ test("Custom Deck should contain 3 cards", () => {
 });
 
 test("deck should be full", () => {
-  const deck = new Deck();
-  expect(deck.isFull()).toBe(true);
+  expect(Deck.create().isFull()).toBe(true);
 });
 
 test("should return proper empty boolean", () => {
-  const deck = new Deck();
+  const deck = Deck.create();
   expect(deck.isEmpty()).toBe(false);
   deck.clear()
   expect(deck.isEmpty()).toBe(true);
@@ -32,12 +30,11 @@ test("should return proper empty boolean", () => {
 })
 
 test("should be able to peek a card", () => {
-  const deck = new Deck();
-  expect(typeof deck.peek()).toBe("object");
+  expect(typeof Deck.create().peek()).toBe("object");
 });
 
 test("should throw empty deck error", () => {
-  const deck = new Deck();
+  const deck = Deck.create();
   deck.clear();
   expect(() => {
     deck.peek();
@@ -45,7 +42,7 @@ test("should throw empty deck error", () => {
 });
 
 test("should throw empty deck error", () => {
-  const deck = new Deck();
+  const deck = Deck.create();
   deck.clear();
   expect(() => {
     deck.shuffle();
@@ -53,7 +50,7 @@ test("should throw empty deck error", () => {
 });
 
 test("should be able to push a card to the deck", () => {
-  const deck = new Deck();
+  const deck = Deck.create();
   const card = new PlayingCard("5", "Hearts");
   deck.clear();
   deck.push(card);
@@ -61,7 +58,7 @@ test("should be able to push a card to the deck", () => {
 });
 
 test("should draw top card from the deck", () => {
-  const deck = new Deck();
+  const deck = Deck.create();
   const topCard = deck.peek();
   const popped = deck.pop();
   expect(typeof popped).toBe("object");
@@ -70,7 +67,7 @@ test("should draw top card from the deck", () => {
 });
 
 test("deck should NOT be full", () => {
-  const deck = new Deck();
+  const deck = Deck.create();
   deck.clear();
   expect(deck.isFull()).toBe(false);
 });
