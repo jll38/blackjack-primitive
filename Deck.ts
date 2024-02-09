@@ -29,6 +29,7 @@ export class Deck implements Stack {
     "King",
   ];
 
+  
   constructor(props?: Partial<PlayingCard[]>) {
     if (props && Object.keys(props).length > 0) {
       //If given a custom array/deck of cards
@@ -48,6 +49,11 @@ export class Deck implements Stack {
     }
   }
 
+  //Factory Method
+  static create(): Deck {
+    return new Deck();
+  }
+  
   push(card: PlayingCard) {
     if (this.isFull()) return null;
     this.data.push(card);
