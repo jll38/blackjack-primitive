@@ -56,6 +56,20 @@ export class BlackjackHand extends Hand implements BlackjackHandProps {
 }
 
 export class DealerHand extends BlackjackHand {
+
+  static instance: DealerHand;
+
+  private constructor(){
+    super();
+  }
+
+  static create(): DealerHand { 
+    if(!DealerHand.instance){
+      DealerHand.instance = new DealerHand();
+    }
+    return DealerHand.instance;
+  }
+
   name: string = "Dealer";
   hidingCard: boolean = true;
 

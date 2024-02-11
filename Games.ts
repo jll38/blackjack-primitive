@@ -173,7 +173,7 @@ export class Blackjack extends Game {
     const deck = new Deck();
     deck.shuffle();
     console.log(chalk.gray("Shuffling deck..."));
-    const dealer = new DealerHand();
+    const dealer = DealerHand.create();
     const player = BlackjackHand.create();
 
     return { deck, dealer, player };
