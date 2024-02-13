@@ -43,7 +43,7 @@ abstract class Game {
 
   protected abstract initObjects(): any 
 
-  protected abstract update(hand: Hand): void
+  protected abstract update(obj? : any): void
 
   endGame(player_win? : boolean): void {
     /*
