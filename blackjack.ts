@@ -13,6 +13,7 @@ export class BlackjackHand extends Hand implements BlackjackHandProps {
   totalHand: number[] = [0, 0];
   numericalHand: number[][] = [[], []];
 
+  
   //Factory Method
   static create(): BlackjackHand {
     return new BlackjackHand();

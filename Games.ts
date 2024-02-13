@@ -38,19 +38,12 @@ abstract class Game {
     }
   }
 
-  initiateTurn(deck: Deck, dealer: DealerHand, player: BlackjackHand): void {
-    /*
-    Handles each turn and increments the turn count. Overridden by the class that extends
-    */
-  }
+  //Handles each turn and increments the turn count. Overridden by the class that extends
+  abstract initiateTurn(deck: Deck, dealer: DealerHand, player: BlackjackHand): void 
 
-  protected initObjects(): any {
-    /*
-    initObjects()
-    Initializes the game objects needed for each game, overridden by the class that extends this.
-     */
-    return null;
-  }
+  
+
+  protected abstract initObjects(): any 
 
   endGame(winner?: BlackjackHand): void {
     /*
@@ -65,7 +58,7 @@ abstract class Game {
     }
 
     //Prompt user
-    console.log("Thanks for playing!\n")
+    console.log("Thanks for playing!\n");
     this.playing = false;
     process.exit();
   }
@@ -102,9 +95,7 @@ export class Blackjack extends Game {
         while (maxDealerHand < 17) {
           dealer.hit(deck);
           console.log(
-            `Dealer hit ${dealer
-              .getHand()
-              [dealer.getHand().length - 1].rank}`
+            `Dealer hit ${dealer.getHand()[dealer.getHand().length - 1].rank}`
           );
           maxDealerHand =
             dealer.getTotalHand()[1] <= 21
@@ -135,9 +126,9 @@ export class Blackjack extends Game {
   }
 
   protected hitOrStand() {
-    console.log("")
+    console.log("");
     let response = prompt("Hit or Stand? (h/s): ");
-    console.log("")
+    console.log("");
     switch (response) {
       default:
         console.log(chalk.red("Invalid response. Try again!"));
@@ -156,7 +147,11 @@ export class Blackjack extends Game {
     Checks to see if the player hit a Blackjack or busted.
     */
     if (player.getTotalHand()[0] === 21 || player.getTotalHand()[1] === 21) {
-      console.log(`${player.name} got ${chalk.green(this.turn === 0 ? "Blackjack!" : "21")}`);
+      console.log(
+        `${player.name} got ${chalk.green(
+          this.turn === 0 ? "Blackjack!" : "21"
+        )}`
+      );
       this.endGame(player);
     } else
       console.log(
@@ -175,7 +170,8 @@ export class Blackjack extends Game {
     console.log(chalk.gray("Shuffling deck..."));
     const dealer = DealerHand.create();
     const player = BlackjackHand.create();
-
+    dealer.addObserver(this);
+    player.addObserver(this);
     return { deck, dealer, player };
   }
 }
