@@ -9,7 +9,7 @@ interface BlackjackHandProps {
 }
 
 export class BlackjackHand extends Hand implements BlackjackHandProps {
-  name: string = "Player";
+  readonly name: string = "Player";
   totalHand: number[] = [0, 0];
   numericalHand: number[][] = [[], []];
 
@@ -53,6 +53,7 @@ export class BlackjackHand extends Hand implements BlackjackHandProps {
         this.totalHand = this.totalHand.map((value) => value + convertedInt);
         break;
     }
+    this.notifyObservers();
   }
 }
 

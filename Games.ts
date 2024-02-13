@@ -3,7 +3,7 @@ import chalk from "./node_modules/chalk/source/index";
 import { Hand } from "./Hand";
 import { Deck } from "./Deck";
 import { PlayingCard } from "./PlayingCard";
-import { DealerHand } from "./blackjack";
+import { DealerHand } from './blackjack';
 import { BlackjackHand } from "./blackjack";
 
 const prompt = require("prompt-sync")();
@@ -41,20 +41,24 @@ abstract class Game {
   //Handles each turn and increments the turn count. Overridden by the class that extends
   abstract initiateTurn(deck: Deck, dealer: DealerHand, player: BlackjackHand): void 
 
-  
-
   protected abstract initObjects(): any 
 
-  endGame(winner?: BlackjackHand): void {
+  protected abstract update(hand: Hand): void
+
+  endGame(player_win? : boolean): void {
     /*
     endGame()
     Ends the game, displays the winner and increments the win count for them.
      */
-    if (winner) {
-      console.log(`${chalk.bold("\nWinner:")} ${chalk.green(winner.name)}`);
-      winner.name === "Dealer" ? this.dealerWin++ : this.playerWin++;
-    } else {
+    if(player_win === undefined){
       console.log(chalk.green("PUSH"));
+    }
+    if (player_win) {
+      console.log(`${chalk.bold("\nWinner:")} ${chalk.green("Player")}`);
+      this.playerWin++;
+    } else {
+      console.log(`${chalk.bold("\nWinner:")} ${chalk.green("Dealer")}`);
+      this.dealerWin++;
     }
 
     //Prompt user
@@ -72,12 +76,9 @@ export class Blackjack extends Game {
       dealer.hit(deck);
       dealer.hit(deck);
 
-      this.checkValue(dealer, player);
-
       player.hit(deck);
       player.hit(deck);
 
-      this.checkValue(player, dealer);
     } else {
       const input = this.hitOrStand();
       if (input === "s") {
@@ -101,24 +102,17 @@ export class Blackjack extends Game {
             dealer.getTotalHand()[1] <= 21
               ? Math.max(...dealer.getTotalHand())
               : dealer.getTotalHand()[0];
-          this.checkValue(dealer, player);
         }
 
         if (finalVal > maxDealerHand) {
-          this.endGame(player);
+          this.endGame(true);
         } else if (finalVal === maxDealerHand) {
           this.endGame();
         } else {
-          this.endGame(dealer);
+          this.endGame(false);
         }
       } else {
         player.hit(deck);
-        console.log(
-          `${player.name} recieves ${chalk.yellow(
-            `${player.getHand()[player.getHand().length - 1].rank}`
-          )}`
-        );
-        this.checkValue(player, dealer);
       }
     }
 
@@ -140,7 +134,7 @@ export class Blackjack extends Game {
     return response;
   }
 
-  protected checkValue(player: BlackjackHand, opponent: BlackjackHand): void {
+  protected checkValue(player: BlackjackHand): void {
     /*
     checkValue()
     Takes in the player who just hit from the deck and their opponent as parameters.
@@ -152,7 +146,7 @@ export class Blackjack extends Game {
           this.turn === 0 ? "Blackjack!" : "21"
         )}`
       );
-      this.endGame(player);
+      this.endGame(true);
     } else
       console.log(
         `${player.name} showing ${chalk.yellow(player.getTotalHandString())}`
@@ -160,7 +154,7 @@ export class Blackjack extends Game {
 
     if (player.getTotalHand()[0] > 21) {
       console.log(chalk.red(`${player.name} Bust!`));
-      this.endGame(opponent);
+      this.endGame(false);
     }
   }
 
@@ -174,4 +168,9 @@ export class Blackjack extends Game {
     player.addObserver(this);
     return { deck, dealer, player };
   }
+
+  protected update(player : BlackjackHand): void {
+    this.checkValue(player);
+  }
+
 }
