@@ -3,7 +3,7 @@ import chalk from "./node_modules/chalk/source/index";
 import { Hand } from "./Hand";
 import { Deck } from "./Deck";
 import { PlayingCard } from "./PlayingCard";
-import { DealerHand } from './blackjack';
+import { DealerHand } from "./blackjack";
 import { BlackjackHand } from "./blackjack";
 
 const prompt = require("prompt-sync")();
@@ -27,7 +27,7 @@ abstract class Game {
     console.log(`🃏 Welcome to ${chalk.green("Lechner Casino")} 🃏`);
     console.log("------------------------------");
     console.log(`You are playing: ${chalk.yellow(this.game)}\n`);
-
+    console.log(`Player ${this.playerWin} - Dealer ${this.dealerWin}`)
     prompt("Press Enter to continue");
 
     this.playing = true;
@@ -39,20 +39,25 @@ abstract class Game {
   }
 
   //Handles each turn and increments the turn count. Overridden by the class that extends
-  abstract initiateTurn(deck: Deck, dealer: DealerHand, player: BlackjackHand): void 
+  abstract initiateTurn(
+    deck: Deck,
+    dealer: DealerHand,
+    player: BlackjackHand
+  ): void;
 
-  protected abstract initObjects(): any 
+  protected abstract initObjects(): any;
 
-  protected abstract update(obj? : any): void
+  protected abstract update(obj?: any): void;
 
-  endGame(player_win? : boolean): void {
+  endGame(player_win?: boolean): void {
     /*
     endGame()
     Ends the game, displays the winner and increments the win count for them.
      */
-    if(player_win === undefined){
+    if (player_win === undefined) {
       console.log(chalk.green("PUSH"));
     }
+
     if (player_win) {
       console.log(`${chalk.bold("\nWinner:")} ${chalk.green("Player")}`);
       this.playerWin++;
@@ -61,7 +66,6 @@ abstract class Game {
       this.dealerWin++;
     }
 
-    //Prompt user
     console.log("Thanks for playing!\n");
     this.playing = false;
     process.exit();
@@ -78,7 +82,6 @@ export class Blackjack extends Game {
 
       player.hit(deck);
       player.hit(deck);
-
     } else {
       const input = this.hitOrStand();
       if (input === "s") {
@@ -143,7 +146,7 @@ export class Blackjack extends Game {
           this.turn === 0 ? "Blackjack!" : "21"
         )}`
       );
-      this.endGame(true);
+      this.endGame(player.name === "Player" ? true : false);
     } else
       console.log(
         `${player.name} showing ${chalk.yellow(player.getTotalHandString())}`
@@ -151,11 +154,12 @@ export class Blackjack extends Game {
 
     if (player.getTotalHand()[0] > 21) {
       console.log(chalk.red(`${player.name} Bust!`));
-      this.endGame(false);
+      this.endGame(player.name === "Dealer" ? true : false);
     }
   }
 
   protected initObjects(): any {
+    this.turn = 0;
     const deck = new Deck();
     deck.shuffle();
     console.log(chalk.gray("Shuffling deck..."));
@@ -166,8 +170,7 @@ export class Blackjack extends Game {
     return { deck, dealer, player };
   }
 
-  protected update(player : BlackjackHand): void {
+  protected update(player: BlackjackHand): void {
     this.checkValue(player);
   }
-
 }
