@@ -26,7 +26,7 @@ abstract class Game {
     console.log("------------------------------");
     console.log(`🃏 Welcome to ${chalk.green("Lechner Casino")} 🃏`);
     console.log("------------------------------");
-    console.log(`Your are playing: ${chalk.yellow(this.game)}\n`);
+    console.log(`You are playing: ${chalk.yellow(this.game)}\n`);
 
     prompt("Press Enter to continue");
 
