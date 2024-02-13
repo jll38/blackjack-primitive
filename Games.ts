@@ -95,9 +95,6 @@ export class Blackjack extends Game {
 
         while (maxDealerHand < 17) {
           dealer.hit(deck);
-          console.log(
-            `Dealer hit ${dealer.getHand()[dealer.getHand().length - 1].rank}`
-          );
           maxDealerHand =
             dealer.getTotalHand()[1] <= 21
               ? Math.max(...dealer.getTotalHand())

@@ -53,6 +53,7 @@ export class BlackjackHand extends Hand implements BlackjackHandProps {
         this.totalHand = this.totalHand.map((value) => value + convertedInt);
         break;
     }
+    console.log(this.name + " hit " + card.rank)
     this.notifyObservers();
   }
 }
