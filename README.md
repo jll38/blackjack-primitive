@@ -1,3 +1,4 @@
+Also Check out the [Python Version](https://github.com/jll38/pyBlackjack) of this Project!
 
 # Blackjack-Typescript
 ![image](./images/blackjack.gif)
