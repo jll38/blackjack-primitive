@@ -23,7 +23,7 @@ The Blackjack project is a console-based simulation of the Blackjack card game, 
 ### Running the Game
 To start the game, run:
 ```
-npx tsc index.ts
+npx tsx index.ts
 ```
 Follow the on-screen prompts to play Blackjack against the computer.
 
